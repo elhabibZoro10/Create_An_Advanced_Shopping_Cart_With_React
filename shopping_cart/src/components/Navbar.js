@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <NavbarBs>
+    <NavbarBs sticky='top' className='bg-white shadow-sm mb-3' >
         <Container>
             <Nav>
                 <Nav.Link to="/" as={NavLink}>
