@@ -6,11 +6,12 @@ import Store from './components/Store';
 import About from './components/About';
 import {  Container } from 'react-bootstrap';
 import Navbar from './components/Navbar';
+import ShoppingCardProvider from './context/ShoppingCardContext';
 
 
 function App() {
   return (
-   <>
+   <ShoppingCardProvider>
    <Navbar/>
    <Container className="mb-4">
     <Routes>
@@ -19,7 +20,7 @@ function App() {
       <Route path='/about' element={<About/>} />
     </Routes>
   </Container>
-   </>
+   </ShoppingCardProvider>
   );
 }
 

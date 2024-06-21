@@ -1,9 +1,11 @@
 import React from 'react'
 import { Button, Card } from 'react-bootstrap'
 import formatCurrency from './formatCurrency'
+import { useShoppingCard } from '../context/ShoppingCardContext'
 
 const StoreItem = ({id , price , name , imgUrl}) => {
-  const quantity = 1
+  const {getItemsQuantity , increaseCardQuantity , decreaseCardQuantity , removeItemFromCard }  = useShoppingCard() 
+  const quantity = getItemsQuantity(id)
   return (
     <Card className='h-100' >
       <Card.Img
@@ -18,15 +20,15 @@ const StoreItem = ({id , price , name , imgUrl}) => {
         </Card.Title>
         <div className='mt-auto' >
         {quantity === 0 ? (
-          <Button className='w-100' >Add To Card</Button>
+          <Button className='w-100' onClick={() => increaseCardQuantity(id)} >Add To Card</Button>
         ):(
           <div className='d-flex align-items-center flex-column' style={{gap:"0.5rem"}} >
             <div className='d-flex align-items-center justify-content-center' style={{gap:"0.5rem"}} >
-              <Button>-</Button>
+              <Button onClick={() => decreaseCardQuantity(id)} >-</Button>
               <span className='fs-3' >1 in Card</span>
-              <Button>+</Button>
+              <Button onClick={() => increaseCardQuantity(id)} >+</Button>
             </div>
-            <Button variant='danger' size='sm' >Remove</Button>
+            <Button variant='danger' size='sm' onClick={() => removeItemFromCard(id)} >Remove</Button>
           </div>
         )}
         </div>
