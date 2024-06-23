@@ -1,10 +1,19 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import ShoppingCard from "../components/ShoppingCard";
 
 const ShoppingCardContext = createContext({});
+
+const initiakCardItems = localStorage.getItem("shopping-card")
+  ? JSON.parse(localStorage.getItem("shopping-card"))
+  : [];
+
 const ShoppingCardProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [cardItems, setCardItems] = useState([]);
+  const [cardItems, setCardItems] = useState(initiakCardItems);
+
+  useEffect(() => {
+    localStorage.setItem("shopping-card", JSON.stringify(cardItems));
+  }, [cardItems]);
 
   const openCard = () => {
     setIsOpen(true);
