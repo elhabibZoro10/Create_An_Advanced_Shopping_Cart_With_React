@@ -25,7 +25,7 @@ const StoreItem = ({id , price , name , imgUrl}) => {
           <div className='d-flex align-items-center flex-column' style={{gap:"0.5rem"}} >
             <div className='d-flex align-items-center justify-content-center' style={{gap:"0.5rem"}} >
               <Button onClick={() => decreaseCardQuantity(id)} >-</Button>
-              <span className='fs-3' >1 in Card</span>
+              <span className='fs-3' >{quantity} in Card</span>
               <Button onClick={() => increaseCardQuantity(id)} >+</Button>
             </div>
             <Button variant='danger' size='sm' onClick={() => removeItemFromCard(id)} >Remove</Button>
